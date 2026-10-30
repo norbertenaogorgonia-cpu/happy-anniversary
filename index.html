@@ -1,0 +1,275 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>One Year, Meanne</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Nunito:ital,wght@0,400;0,600;1,400&family=Caveat:wght@500;700&display=swap">
+<style>
+/* Layout: one centered column. A sealed envelope opens onto a paper letter in four short pages, ending with a heart to tap. */
+:root {
+  --bg: #fbeff0;
+  --paper: #fffaf6;
+  --ink: #4a2f3a;
+  --muted: #8a6672;
+  --rose: #d2607e;
+  --rose-soft: #f4c9d3;
+  --rose-deep: #e9a2b3;
+  --sage: #8fa68a;
+  --line: #efd9de;
+  --shadow: rgba(122, 52, 76, 0.18);
+  --font-script: "Great Vibes", "Snell Roundhand", cursive;
+  --font-body: "Nunito", "Segoe UI", system-ui, sans-serif;
+  --font-hand: "Caveat", "Bradley Hand", cursive;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #24161c;
+    --paper: #33212a;
+    --ink: #f6e3e8;
+    --muted: #c4a0ac;
+    --rose: #f08fa7;
+    --rose-soft: #5a3342;
+    --rose-deep: #7a4558;
+    --sage: #a3bc9e;
+    --line: #4a3039;
+    --shadow: rgba(0, 0, 0, 0.45);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #24161c;
+  --paper: #33212a;
+  --ink: #f6e3e8;
+  --muted: #c4a0ac;
+  --rose: #f08fa7;
+  --rose-soft: #5a3342;
+  --rose-deep: #7a4558;
+  --sage: #a3bc9e;
+  --line: #4a3039;
+  --shadow: rgba(0, 0, 0, 0.45);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  padding-block: 2.5rem 4rem;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  overflow-x: hidden;
+}
+.wrap { max-width: 36rem; margin-inline: auto; display: flex; flex-direction: column; align-items: center; gap: 2rem; }
+
+/* Opening */
+.intro { text-align: center; }
+.eyebrow { font-family: var(--font-hand); font-size: 1.35rem; font-weight: 500; color: var(--muted); letter-spacing: 0.04em; margin: 0; }
+h1 { font-family: var(--font-script); font-weight: 400; font-size: clamp(3rem, 14vw, 4.5rem); line-height: 1.1; margin: 0.25rem 0 0; color: var(--rose); text-wrap: balance; }
+
+/* Envelope */
+.env-wrap { width: min(100%, 22rem); display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+.envelope { position: relative; width: 100%; aspect-ratio: 3 / 2; filter: drop-shadow(0 14px 18px var(--shadow)); perspective: 900px; }
+.env-back { position: absolute; inset: 0; background: var(--rose-deep); border-radius: 0.5rem; }
+.env-front { position: absolute; inset: 0; background: var(--rose-soft); border-radius: 0.5rem; clip-path: polygon(0 0, 50% 58%, 100% 0, 100% 100%, 0 100%); }
+.flap { position: absolute; left: 0; right: 0; top: 0; height: 62%; background: var(--rose-deep); clip-path: polygon(0 0, 100% 0, 50% 100%); transform-origin: top center; transition: transform 0.9s ease, z-index 0s 0.45s; z-index: 3; border-radius: 0.5rem 0.5rem 0 0; }
+.envelope.open .flap { transform: rotateX(180deg); z-index: 0; }
+.seal { position: absolute; left: 50%; top: 52%; transform: translate(-50%, -50%); z-index: 4; width: 3.6rem; height: 3.6rem; border-radius: 50%; border: 0; background: var(--rose); color: #fff; display: grid; place-items: center; cursor: pointer; box-shadow: 0 4px 10px var(--shadow); transition: transform 0.25s ease, opacity 0.4s ease; animation: beat 1.8s ease-in-out infinite; padding: 0; }
+.seal:hover { transform: translate(-50%, -50%) scale(1.08); }
+.seal:focus-visible, .heart-btn:focus-visible, .theme-btn:focus-visible { outline: 3px solid var(--sage); outline-offset: 3px; }
+.seal svg { width: 1.7rem; height: 1.7rem; fill: currentColor; }
+.envelope.open .seal { opacity: 0; pointer-events: none; animation: none; }
+.hint { font-family: var(--font-hand); font-size: 1.4rem; color: var(--muted); margin: 0; }
+.hint[hidden] { display: none; }
+@keyframes beat { 0%, 100% { transform: translate(-50%, -50%) scale(1); } 50% { transform: translate(-50%, -50%) scale(1.09); } }
+
+/* Letter */
+.js .letter { display: none; }
+.js .letter.show { display: flex; animation: rise 0.9s ease both; }
+@keyframes rise { from { opacity: 0; transform: translateY(1.5rem); } to { opacity: 1; transform: none; } }
+.letter { width: 100%; flex-direction: column; gap: 1.5rem; }
+.page { position: relative; background: var(--paper); border-radius: 0.35rem; padding: 2.4rem clamp(1.25rem, 6vw, 2.5rem); box-shadow: 0 10px 28px var(--shadow); border: 1px solid var(--line); overflow: hidden; }
+.page p { margin: 0 0 1.15rem; min-width: 0; overflow-wrap: break-word; }
+.page p:last-child { margin-bottom: 0; }
+.page-label { position: absolute; right: 1rem; top: 0.6rem; font-family: var(--font-hand); font-size: 1.1rem; color: var(--muted); }
+.flower { position: absolute; width: 5.5rem; height: 5.5rem; opacity: 0.55; pointer-events: none; }
+.flower.tl { left: -1.6rem; top: -1.6rem; }
+.flower.br { right: -1.6rem; bottom: -1.6rem; transform: rotate(40deg); }
+.greeting { font-family: var(--font-script); font-size: 2.6rem; line-height: 1.2; color: var(--rose); margin: 0.6rem 0 1rem !important; }
+.page .soft { color: var(--muted); }
+
+/* Ending */
+.finale { text-align: center; align-items: center; gap: 0.6rem; display: flex; flex-direction: column; padding-block: 1rem; }
+.big-script { font-family: var(--font-script); font-size: clamp(2.2rem, 10vw, 3.2rem); line-height: 1.2; color: var(--rose); margin: 0; text-wrap: balance; }
+.verse { font-family: var(--font-hand); font-size: 1.5rem; color: var(--muted); margin: 0; }
+.sig { font-family: var(--font-script); font-size: 2.2rem; color: var(--ink); margin: 0.8rem 0 0; }
+.heart-btn { margin-top: 1rem; border: 0; background: var(--rose); color: #fff; font-family: var(--font-body); font-weight: 600; font-size: 1rem; padding: 0.85rem 1.6rem; border-radius: 999px; cursor: pointer; display: inline-flex; align-items: center; gap: 0.6rem; box-shadow: 0 6px 14px var(--shadow); transition: transform 0.2s ease; }
+.heart-btn:hover { transform: translateY(-2px); }
+.heart-btn:active { transform: scale(0.97); }
+.heart-btn svg { width: 1.2rem; height: 1.2rem; fill: currentColor; }
+.reply { font-family: var(--font-hand); font-size: 1.5rem; color: var(--rose); min-height: 2rem; margin: 0.4rem 0 0; }
+
+/* Falling petals and hearts */
+.fx { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 20; }
+.petal { position: absolute; top: -2rem; width: 0.9rem; height: 1.2rem; background: var(--rose-deep); border-radius: 80% 0 80% 0; opacity: 0.85; animation: fall linear forwards; }
+@keyframes fall { to { transform: translate(var(--dx), 110vh) rotate(var(--rot)); opacity: 0.3; } }
+.pop { position: absolute; bottom: 20%; font-size: 1.6rem; color: var(--rose); animation: floatup 2.2s ease-out forwards; }
+@keyframes floatup { from { transform: translate(0, 0) scale(0.6); opacity: 1; } to { transform: translate(var(--dx), -55vh) scale(1.3); opacity: 0; } }
+
+/* Theme toggle */
+.theme-btn { position: fixed; top: calc(0.75rem + env(safe-area-inset-top, 0px)); right: max(0.75rem, env(safe-area-inset-right, 0px)); z-index: 30; border: 1px solid var(--line); background: var(--paper); color: var(--ink); width: 2.5rem; height: 2.5rem; border-radius: 50%; cursor: pointer; font-size: 1.1rem; box-shadow: 0 3px 8px var(--shadow); }
+
+@media (prefers-reduced-motion: reduce) {
+  .seal, .letter.show, .petal, .pop { animation: none; }
+  .flap { transition: none; }
+}
+</style>
+
+<button class="theme-btn" id="themeBtn" type="button" aria-label="Switch light or dark">◐</button>
+<div class="fx" id="fx" aria-hidden="true"></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="heart" viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-9.8-9.3C.7 8.5 2.4 4.8 6 4.8c2.1 0 3.5 1.1 4.3 2.4.3.5 1 .5 1.4 0 .8-1.3 2.2-2.4 4.3-2.4 3.6 0 5.3 3.700 3.800 6.900C19.500 16.400 12 21 12 21z"/></symbol>
+    <symbol id="bloom" viewBox="0 0 100 100">
+      <g fill="#e9a2b3">
+        <ellipse cx="50" cy="26" rx="14" ry="22"/>
+        <ellipse cx="50" cy="26" rx="14" ry="22" transform="rotate(72 50 50)"/>
+        <ellipse cx="50" cy="26" rx="14" ry="22" transform="rotate(144 50 50)"/>
+        <ellipse cx="50" cy="26" rx="14" ry="22" transform="rotate(216 50 50)"/>
+        <ellipse cx="50" cy="26" rx="14" ry="22" transform="rotate(288 50 50)"/>
+      </g>
+      <circle cx="50" cy="50" r="9" fill="#f6d27a"/>
+    </symbol>
+  </defs>
+</svg>
+
+<main class="wrap">
+  <header class="intro">
+    <p class="eyebrow">October 31 · One year</p>
+    <h1>For you, Meanne</h1>
+  </header>
+
+  <section class="env-wrap" aria-label="Sealed letter">
+    <div class="envelope" id="envelope">
+      <div class="env-back"></div>
+      <div class="env-front"></div>
+      <div class="flap"></div>
+      <button class="seal" id="seal" type="button" aria-label="Open the letter"><svg><use href="#heart"/></svg></button>
+    </div>
+    <p class="hint" id="hint">Tap the heart to open</p>
+  </section>
+
+  <article class="letter" id="letter">
+    <section class="page">
+      <svg class="flower tl" aria-hidden="true"><use href="#bloom"/></svg>
+      <span class="page-label">page 1</span>
+      <p class="greeting">Hi, Meanne!</p>
+      <p>Today is Oct 31, and we're already one year together. Not exactly one year, but this is the day you reciprocated my feelings through a letter, and it made my day so much happier. I don't even know how many times I read that letter back then, and I might not be able to express how much it meant to me. Now I'm sending you this letter so you can know how much I appreciate you in my life.</p>
+      <p>I really love you so much! Even though I sometimes (or always) annoy you, I hope you understand that it's just the way I show my love for you. I truly appreciate your presence in my life. Since the day we started talking, my whole life has changed. I started wanting to be better in every way. You really became an inspiration to me. You make my days so much lighter than before just by being in them, even when you don't do anything.</p>
+    </section>
+
+    <section class="page">
+      <span class="page-label">page 2</span>
+      <p>I've also noticed that I'm becoming more and more dependent on you as our time together goes by. Naiisip ko nga na hindi ko na kayang mabuhay nang wala ka, haha. Ewan, ganun lang siguro kita kamahal. Syempre, si Lord ang source of life natin, pero feeling ko ang hirap mabuhay kung wala ka sa buhay ko. Parang mawawalan ng buhay ang buhay ko, ganun, hehe.</p>
+      <p>In this one year, even though hindi pa siya ganoon katagal, my love for you has still grown so big. I've learned so many things from you. I learned how to love you and how to do things I had never done before. I saw myself improve because I'm trying for you.</p>
+      <p>I hope you can feel my love, even if the things I do for you aren't that big. They're simple efforts, but they're my best. You know naman na wala akong experience sa pagkakaroon ng karelasyon.</p>
+    </section>
+
+    <section class="page">
+      <span class="page-label">page 3</span>
+      <p>I'm also sorry because these past few months, parang dumadalas ang tampuhan at away natin. I'm really sorry if I can't do anything about it. I want you to know na ayaw kong palagi tayong nagtatalo, nag-aaway, o nagtatampuhan. I want to build a lot of happy memories with you. I'm really sorry din dahil minsan, ako pa ang nagiging dahilan kung bakit ka nasasaktan. Ako dapat ang safe place mo, pero minsan ako pa ang nakakasakit sa'yo. I hope you forgive me, and sana mawala o humupa na ang lahat ng tampo mo sa akin.</p>
+    </section>
+
+    <section class="page">
+      <svg class="flower br" aria-hidden="true"><use href="#bloom"/></svg>
+      <span class="page-label">page 4</span>
+      <p>Ayun lang. Happy One Year!! I hope and pray na hindi lang ito hanggang one year. Nawa'y tumagal pa tayo, for years, for decades. I really hope na ikaw na, ikaw na nawa ang mapangasawa ko, at ikaw ang makita ko sa altar sa araw ng kasal ko. I know we're still young and have a lot of things to experience, but I just wish, hope, and pray na ikaw na talaga.</p>
+    </section>
+
+    <section class="finale">
+      <p class="big-script">I love youuuu!!</p>
+      <p class="verse">And Jesus loves youu so much moreee!!!!</p>
+      <p class="sig">— Norbert</p>
+      <button class="heart-btn" id="heartBtn" type="button"><svg><use href="#heart"/></svg> Tap if you felt this</button>
+      <p class="reply" id="reply" aria-live="polite"></p>
+    </section>
+  </article>
+</main>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  root.classList.add('js');
+
+  var envelope = document.getElementById('envelope');
+  var seal = document.getElementById('seal');
+  var hint = document.getElementById('hint');
+  var letter = document.getElementById('letter');
+  var fx = document.getElementById('fx');
+  var heartBtn = document.getElementById('heartBtn');
+  var reply = document.getElementById('reply');
+  var themeBtn = document.getElementById('themeBtn');
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var opened = false;
+
+  function petals(n) {
+    if (reduce) return;
+    for (var i = 0; i < n; i++) {
+      var p = document.createElement('span');
+      p.className = 'petal';
+      p.style.left = (Math.random() * 100) + '%';
+      p.style.setProperty('--dx', ((Math.random() - 0.5) * 160) + 'px');
+      p.style.setProperty('--rot', (180 + Math.random() * 540) + 'deg');
+      p.style.animationDuration = (5 + Math.random() * 5) + 's';
+      p.style.animationDelay = (Math.random() * 2.5) + 's';
+      p.style.width = (0.6 + Math.random() * 0.6) + 'rem';
+      p.style.height = (0.8 + Math.random() * 0.7) + 'rem';
+      fx.appendChild(p);
+      (function (el) { setTimeout(function () { if (el.parentNode) el.parentNode.removeChild(el); }, 11000); })(p);
+    }
+  }
+
+  function openLetter() {
+    if (opened) return;
+    opened = true;
+    envelope.classList.add('open');
+    hint.hidden = true;
+    petals(22);
+    setTimeout(function () {
+      letter.classList.add('show');
+      try { letter.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' }); } catch (e) { letter.scrollIntoView(); }
+    }, reduce ? 0 : 800);
+  }
+  seal.addEventListener('click', openLetter);
+
+  var replies = ['I felt it too 🤍', 'Happy one year, love.', 'I love you more!', 'Forever, ikaw lang.'];
+  var tapCount = 0;
+  heartBtn.addEventListener('click', function () {
+    reply.textContent = replies[tapCount % replies.length];
+    tapCount++;
+    if (reduce) return;
+    for (var i = 0; i < 12; i++) {
+      var h = document.createElement('span');
+      h.className = 'pop';
+      h.textContent = '♥';
+      h.style.left = (10 + Math.random() * 80) + '%';
+      h.style.setProperty('--dx', ((Math.random() - 0.5) * 120) + 'px');
+      h.style.animationDelay = (Math.random() * 0.4) + 's';
+      fx.appendChild(h);
+      (function (el) { setTimeout(function () { if (el.parentNode) el.parentNode.removeChild(el); }, 3000); })(h);
+    }
+  });
+
+  themeBtn.addEventListener('click', function () {
+    var dark = root.getAttribute('data-theme') === 'dark' ||
+      (!root.getAttribute('data-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    root.setAttribute('data-theme', dark ? 'light' : 'dark');
+  });
+})();
+</script>
+
+</body></html>
